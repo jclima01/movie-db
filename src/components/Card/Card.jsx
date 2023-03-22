@@ -11,8 +11,8 @@ const Card = ({ movie,onClick }) => {
       <img
         width={230}
         height={345}
-        src={`${URL_IMAGE + movie.poster_path}`}
-        alt=""
+        src={`${URL_IMAGE}/${movie.poster_path}`}
+        alt={movie.title}
         className={styles.movieImg}
       />
       <h4>{movie.title}</h4>

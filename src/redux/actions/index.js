@@ -6,6 +6,20 @@ const URL_IMAGE = "https://image.tmdb.org/t/p/original";
 
 export const GET_MOVIES = "GET_MOVIES";
 export const GET_MOVIE = "GET_MOVIE";
+export const SET_SEARCH_KEY = "SET_SEARCH_KEY";
+
+export const setSearchKey = (value) => {
+  try {
+    return async function (dispatch) {
+      return dispatch({
+        type: SET_SEARCH_KEY,
+        payload: value,
+      });
+    };
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const getMovies = (searchKey) => {
   try {

@@ -12,8 +12,6 @@ export const fetchMovies = async (searchKey) => {
       query: searchKey,
     },
   });
-  //console.log('data',results);
-  //setSelectedMovie(results[0])
 
   setMovies(results);
   setMovie(results[0]);
