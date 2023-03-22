@@ -9,6 +9,7 @@ const Details = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const movie = useSelector((state) => state.movie);
+  console.log(movie)
   const [modalShow, setModalShow] = useState(false);
   useEffect(() => {
     dispatch(getMovie(id));

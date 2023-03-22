@@ -1,8 +1,6 @@
 import axios from "axios";
 const API_URL = "https://api.themoviedb.org/3";
 const API_KEY = "4f5f43495afcc67e9553f6c684a82f84";
-const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
-const URL_IMAGE = "https://image.tmdb.org/t/p/original";
 
 export const GET_MOVIES = "GET_MOVIES";
 export const GET_MOVIE = "GET_MOVIE";
@@ -53,7 +51,7 @@ export const getMovie = (id) => {
       });
       if (data.videos && data.videos.results) {
         const trailer = data.videos.results.find(
-          (vid) => vid.name === "Official Trailer"
+          (vid) => vid.name.includes("Official Trailer") 
         );
 
         return dispatch({
