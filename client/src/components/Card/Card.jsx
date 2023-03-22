@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Card.module.css";
 const URL_IMAGE = "https://image.tmdb.org/t/p/original";
 const Card = ({ movie,onClick }) => {
+  
   return (
     <div
       key={movie.id}
@@ -16,6 +17,7 @@ const Card = ({ movie,onClick }) => {
         className={styles.movieImg}
       />
       <h4>{movie.title}</h4>
+
     </div>
   );
 };

@@ -4,13 +4,12 @@ import image from "/LogoPeliWhite.png";
 
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <>
-      <Navbar bg="dark" variant="dark" className="">
+      <Navbar bg="dark" variant="dark" className="gap">
         <Container>
           <Link to="/">
             <img
@@ -24,6 +23,9 @@ const Nav = () => {
 
           <SearchBar />
         </Container>
+      <Button className="m-4">
+        Logout
+      </Button>
       </Navbar>
     </>
   );

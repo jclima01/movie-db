@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getMovie } from "../../redux/actions";
 import ModalTrailer from "../ModalTrailer/ModalTrailer";
+import Reseñas from "../Reseñas/Reseñas";
 const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
 const Details = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const Details = () => {
     dispatch(getMovie(id));
   }, []);
   return (
-    <div>
+    <div className="d-flex flex-column gap-5 m-5">
       <Card>
         <Card.Body className="d-flex gap-5">
           <Image
@@ -50,6 +51,7 @@ const Details = () => {
           </div>
         </Card.Body>
       </Card>
+      <Reseñas/>
     </div>
   );
 };

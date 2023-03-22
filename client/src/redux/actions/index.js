@@ -6,6 +6,8 @@ export const GET_MOVIES = "GET_MOVIES";
 export const GET_MOVIE = "GET_MOVIE";
 export const SET_SEARCH_KEY = "SET_SEARCH_KEY";
 
+
+
 export const setSearchKey = (value) => {
   try {
     return async function (dispatch) {
