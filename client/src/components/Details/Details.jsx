@@ -51,7 +51,7 @@ const Details = () => {
           </div>
         </Card.Body>
       </Card>
-      <Reseñas/>
+      {/* <Reseñas/> */}
     </div>
   );
 };

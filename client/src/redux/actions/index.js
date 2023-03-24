@@ -6,7 +6,51 @@ export const GET_MOVIES = "GET_MOVIES";
 export const GET_MOVIE = "GET_MOVIE";
 export const SET_SEARCH_KEY = "SET_SEARCH_KEY";
 
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const LOGOUT = "LOGOUT";
 
+export const logout = () => {
+  try {
+    return async function (dispatch) {
+
+      return dispatch({
+        type: LOGOUT,
+        
+      });
+    };
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+export const login = (email, password) => {
+  try {
+    return async function (dispatch) {
+      const response = await axios.post("http://localhost:4005/api/auth/login", {
+        email,
+        password,
+      });
+      if(response.data){
+        return dispatch({
+          type: LOGIN_SUCCESS,
+          payload: response.data,
+        });
+        
+      }else{
+        return dispatch({
+          type: LOGIN_ERROR,
+          
+        });
+
+      }
+      
+    };
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const setSearchKey = (value) => {
   try {
@@ -52,8 +96,8 @@ export const getMovie = (id) => {
         },
       });
       if (data.videos && data.videos.results) {
-        const trailer = data.videos.results.find(
-          (vid) => vid.name.includes("Official Trailer") 
+        const trailer = data.videos.results.find((vid) =>
+          vid.name.includes("Official Trailer")
         );
 
         return dispatch({

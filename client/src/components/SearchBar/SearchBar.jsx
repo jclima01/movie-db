@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React from "react";
+import {  Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { getMovies, setSearchKey } from "../../redux/actions";
-// import { fetchMovie,fetchMovies } from "../../utils/useFetchs";
+import {  useNavigate } from "react-router-dom";
+import {  setSearchKey } from "../../redux/actions";
 const SearchBar = () => {
-  // const [searchKey, setSearchKey] = useState("");
 
   const searchKey = useSelector(state => state.searchKey)
   const dispatch = useDispatch();

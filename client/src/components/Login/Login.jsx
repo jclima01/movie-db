@@ -1,56 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(userData.email, userData.password));
+    navigate("/home")
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <form className="text-center">
+      <form className="text-center" onSubmit={handleSubmit}>
         <div className="form-outline mb-4">
-          <input type="email" id="form2Example1" className="form-control" />
-          <label className="form-label" for="form2Example1">
+          <input
+            type="email"
+            name="email"
+            id="form2Example1"
+            className="form-control"
+            onChange={handleInputChange}
+            autoComplete="username"
+          />
+          <label className="form-label" htmlFor="form2Example1">
             Email address
           </label>
         </div>
 
         <div className="form-outline mb-4">
-          <input type="password" id="form2Example2" className="form-control" />
-          <label className="form-label" for="form2Example2">
+          <input
+            type="password"
+            name="password"
+            id="form2Example2"
+            className="form-control"
+            onChange={handleInputChange}
+            autoComplete="current-password"
+          />
+          <label className="form-label" htmlFor="form2Example2">
             Password
           </label>
         </div>
 
-        <div className="row mb-4">
-          <div className="col d-flex justify-content-center">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id="form2Example31"
-                checked
-              />
-              <label className="form-check-label" for="form2Example31">
-                {" "}
-                Remember me{" "}
-              </label>
-            </div>
-          </div>
-
-          <div className="col">
-            <a href="#!">Forgot password?</a>
-          </div>
-        </div>
-
-        <button type="button" className="btn btn-primary btn-block mb-4">
+        <button type="submit" className="btn btn-primary btn-block mb-4">
           Log in
         </button>
 
         <div className="text-center">
           <p>
-            Not a member? <Button onClick={()=>navigate("/register")}>Register</Button>
+            Not a member?{" "}
+            <Button onClick={() => navigate("/register")}>Register</Button>
           </p>
           <p>or sign up with:</p>
           <button type="button" className="btn btn-link btn-floating mx-1">
