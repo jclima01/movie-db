@@ -7,6 +7,7 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Nav from "./components/Nav/Nav";
 import Register from "./components/Registrer/Register";
+import Watchlist from "./components/Watchlist/Watchlist";
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -24,12 +25,13 @@ function App() {
       {user ? (
         <Routes>
           <Route path="/home" element={<Home />} />
-          <Route path="/detail/:id" element={<Details />} />
+          <Route path="/detail/:movieid" element={<Details />} />
+          <Route path="/watchlist" element={<Watchlist />} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="/" element={<Login />}></Route>{" "}
-          <Route path="/register" element={<Register />} />{" "}
+          <Route path="/" element={<Login />}></Route>
+          <Route path="/register" element={<Register />} />
         </Routes>
       )}
       {location.pathname !== "/" && <Footer />}

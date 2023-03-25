@@ -2,19 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getMovie } from "../../redux/actions";
+import { addToWatchlist, getMovie } from "../../redux/actions";
+import AddReview from "../AddReview/AddReview";
 import ModalTrailer from "../ModalTrailer/ModalTrailer";
-import Reseñas from "../Reseñas/Reseñas";
+import Reviews from "../Reseñas/Reviews";
 const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
 const Details = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
+  const user = useSelector(state => state.user)
   const movie = useSelector((state) => state.movie);
-  console.log(movie)
+  const { movieid } = useParams();
+  const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
+
   useEffect(() => {
-    dispatch(getMovie(id));
+    dispatch(getMovie(movieid));
+  
   }, []);
+
   return (
     <div className="d-flex flex-column gap-5 m-5">
       <Card>
@@ -38,10 +42,15 @@ const Details = () => {
                 <div key={g.id}>{g.name}</div>
               ))}
             </div>
+            <div className="d-flex gap-2 mb-3">
+              <Button variant="primary" onClick={() => setModalShow(true)}>
+                Ver Trailer
+              </Button>
 
-            <Button variant="primary" onClick={() => setModalShow(true)}>
-              Ver Trailer
-            </Button>
+              <Button variant="primary" onClick={()=>dispatch(addToWatchlist(user,movieid,{boolean: true}))} >
+                Add to Watchlist
+              </Button>
+            </div>
 
             <ModalTrailer
               movie={movie}
@@ -51,7 +60,8 @@ const Details = () => {
           </div>
         </Card.Body>
       </Card>
-      {/* <Reseñas/> */}
+      <AddReview />
+      <Reviews />
     </div>
   );
 };

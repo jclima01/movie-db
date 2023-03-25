@@ -32,7 +32,14 @@ const Nav = () => {
 
           <SearchBar />
         </Container>
-        <Button className="m-4" onClick={handleButton}>Logout</Button>
+        <Button className="m-4" onClick={handleButton}>
+          Logout
+        </Button>
+        <Link to="/watchlist">
+          <Button className="m-4">
+            Watchlist
+          </Button>
+        </Link>
       </Navbar>
     </>
   );

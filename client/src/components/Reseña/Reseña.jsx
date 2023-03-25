@@ -1,15 +1,15 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import dateFormat, { masks } from "dateformat";
 
-const Reseña = () => {
+const Reseña = ({ comment,createdAt }) => {
+  const user = useSelector((state) => state.user);
   return (
     <>
-      <Card.Header>Featured</Card.Header>
+      <Card.Header>{user.name} {dateFormat(createdAt,"dddd, mmmm dS, yy, h:MM TT")}</Card.Header>
       <Card.Body>
-        <Card.Title>Special title treatment</Card.Title>
-        <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
-        </Card.Text>
+        <Card.Text >{comment}</Card.Text>
       </Card.Body>
     </>
   );

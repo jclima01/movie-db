@@ -7,6 +7,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   LOGOUT,
+  REGISTER_START,
+  REGISTER,
+  LOADING,
+  ADD_REVIEW,
+  GET_REVIEWS,
+  ADD_TO_WATCHLIST,
+  REMOVE_FROM_WATCHLIST,
 } from "../actions";
 
 const initialState = {
@@ -15,11 +22,37 @@ const initialState = {
   trailer: {},
   searchKey: "",
   user: JSON.parse(localStorage.getItem("user")) || null,
+  loading: false,
+  error: false,
+  reviews: []
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     // Acá va tu código:
+    case REMOVE_FROM_WATCHLIST:
+    case ADD_TO_WATCHLIST:
+      localStorage.setItem("user", JSON.stringify(payload));
+      return{
+        ...state,
+        user: {...state.user.token,...payload},
+      }
+
+    case GET_REVIEWS:
+      return{
+        ...state,
+        reviews: [...payload]
+      }
+    case ADD_REVIEW:
+    case REGISTER:
+      return{
+        ...state,
+      }
+    case LOADING:
+      return{
+        ...state,
+        loading: payload
+      }
     case LOGOUT:
       localStorage.removeItem("user");
       return {

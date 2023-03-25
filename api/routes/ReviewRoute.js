@@ -7,12 +7,11 @@ const { verifyToken } = require("../routes/VerifyToken");
 router.post("/:id", verifyToken, async (req, res) => {
   const { comment } = req.body;
   const { id } = req.params;
-
   try {
-    const newReview = await createReview(req.user.id, id, comment);
+    const newReview = await createReview(req.user.id,comment, id );
     res.status(200).json(newReview);
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 });
