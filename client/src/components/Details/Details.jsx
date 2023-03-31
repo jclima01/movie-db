@@ -6,9 +6,10 @@ import { addToWatchlist, getMovie } from "../../redux/actions";
 import AddReview from "../AddReview/AddReview";
 import ModalTrailer from "../ModalTrailer/ModalTrailer";
 import Reviews from "../Reseñas/Reviews";
+import Swal from "sweetalert2";
 const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
 const Details = () => {
-  const user = useSelector(state => state.user)
+  const user = useSelector((state) => state.user);
   const movie = useSelector((state) => state.movie);
   const { movieid } = useParams();
   const dispatch = useDispatch();
@@ -16,9 +17,15 @@ const Details = () => {
 
   useEffect(() => {
     dispatch(getMovie(movieid));
-  
   }, []);
 
+  const handleDispatch = () => {
+    dispatch(addToWatchlist(user, movie, { boolean: true }));
+    Swal.fire({
+      icon: "success",
+    });
+  };
+console.log(movie)
   return (
     <div className="d-flex flex-column gap-5 m-5">
       <Card>
@@ -47,7 +54,7 @@ const Details = () => {
                 Ver Trailer
               </Button>
 
-              <Button variant="primary" onClick={()=>dispatch(addToWatchlist(user,movieid,{boolean: true}))} >
+              <Button variant="primary" onClick={handleDispatch}>
                 Add to Watchlist
               </Button>
             </div>

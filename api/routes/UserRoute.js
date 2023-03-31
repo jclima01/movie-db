@@ -7,14 +7,15 @@ const {
 const { verifyToken } = require("../routes/VerifyToken");
 
 router.put("/:movieid", verifyToken, async (req, res) => {
-  const { movieid } = req.params;
-  const { boolean } = req.body;
   try {
+    const { boolean, movie } = req.body;
+    console.log(boolean)
+    console.log(movie)
     if (boolean) {
-      const movieAdded = await addToWatchlist(req.user.id, movieid);
+      const movieAdded = await addToWatchlist(req.user.id, movie);
       res.status(200).json({ ...movieAdded._doc, token: req.headers.authorization.split(" ")[1]} );
     } else {
-      const movieDeleted = await deleteFromWatchlist(req.user.id, movieid);
+      const movieDeleted = await deleteFromWatchlist(req.user.id, movie);
       res.status(200).json( { ...movieDeleted._doc, token: req.headers.authorization.split(" ")[1]} );
     }
   } catch (error) {

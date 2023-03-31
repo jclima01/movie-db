@@ -25,7 +25,6 @@ export const getWatchlist = () => {
       const { data } = await axios.get(`${API_URL}/movie/${id}`, {
         params: {
           api_key: API_KEY,
-          append_to_response: "videos",
         },
       });
       return dispatch({
@@ -36,17 +35,16 @@ export const getWatchlist = () => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
-export const removeFromWatchlist = (user, movieid, boolean) => {
+export const removeFromWatchlist = (user, movie) => {
   try {
     return async function (dispatch) {
       const response = await axios.put(
-        `http://localhost:4005/api/user/${movieid}`,
-        { boolean : false},
+        `http://localhost:4005/api/user/${movie.id}`,
+        { boolean: false, movie: movie },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
-      console.log(response)
       return dispatch({
         type: REMOVE_FROM_WATCHLIST,
         payload: response.data,
@@ -56,12 +54,12 @@ export const removeFromWatchlist = (user, movieid, boolean) => {
     console.log(err);
   }
 };
-export const addToWatchlist = (user, movieid, boolean) => {
+export const addToWatchlist = (user, movie, boolean) => {
   try {
     return async function (dispatch) {
       const response = await axios.put(
-        `http://localhost:4005/api/user/${movieid}`,
-        { boolean },
+        `http://localhost:4005/api/user/${movie.id}`,
+        { boolean, movie },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
       return dispatch({
@@ -187,6 +185,7 @@ export const getMovies = (searchKey) => {
         params: {
           api_key: API_KEY,
           query: searchKey,
+          language: "es-ES",
         },
       });
       return dispatch({
@@ -205,6 +204,7 @@ export const getMovie = (id) => {
         params: {
           api_key: API_KEY,
           append_to_response: "videos",
+          language: "en-US",
         },
       });
       if (data.videos && data.videos.results) {
