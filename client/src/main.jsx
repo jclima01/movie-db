@@ -5,11 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store/index.js";
 
-import axios from "axios";
-
-const DB_URL = import.meta.env.DB_URL;
-
-axios.defaults.baseURL = DB_URL;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
