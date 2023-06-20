@@ -41,7 +41,7 @@ export const removeFromWatchlist = (user, movie) => {
   try {
     return async function (dispatch) {
       const response = await axios.put(
-        `http://localhost:4000/api/user/${movie.id}`,
+        `https://moviedb-v1.up.railway.app/api/user/${movie.id}`,
         { boolean: false, movie: movie },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
@@ -58,7 +58,7 @@ export const addToWatchlist = (user, movie, boolean) => {
   try {
     return async function (dispatch) {
       const response = await axios.put(
-        `http://localhost:4000/api/user/${movie.id}`,
+        `https://moviedb-v1.up.railway.app/api/user/${movie.id}`,
         { boolean, movie },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
@@ -76,7 +76,7 @@ export const getReviews = (user, movieid) => {
   try {
     return async function (dispatch) {
       const response = await axios.get(
-        `http://localhost:4000/api/review/${movieid}`,
+        `https://moviedb-v1.up.railway.app/api/review/${movieid}`,
         { headers: { authorization: `Bearer ${user.token}` } }
       );
       return dispatch({
@@ -93,7 +93,7 @@ export const addReview = (user, comment, movieid) => {
   try {
     return async function (dispatch) {
       const response = await axios.post(
-        `http://localhost:4000/api/review/${movieid}`,
+        `https://moviedb-v1.up.railway.app/api/review/${movieid}`,
         { comment },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
@@ -111,7 +111,7 @@ export const register = (name, email, password) => {
   try {
     return async function (dispatch) {
       const response = await axios.post(
-        `http://localhost:4000/api/auth/register`,
+        `https://moviedb-v1.up.railway.app/api/auth/register`,
         { name, email, password }
       );
       return dispatch({
@@ -140,7 +140,7 @@ export const login = (email, password) => {
   try {
     return async function (dispatch) {
       const response = await axios.post(
-        `http://localhost:4000/api/auth/login`,
+        `https://moviedb-v1.up.railway.app/api/auth/login`,
         {
           email,
           password,
