@@ -14,7 +14,7 @@ function App() {
   const user = useSelector(state => state.user)
 
   useEffect(() => {
-    // if(!user) navigate("/")
+    if(!user) navigate("/")
   }, [user])
   
   
