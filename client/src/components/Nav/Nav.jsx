@@ -2,9 +2,6 @@ import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import image from "/LogoPeliWhite.png";
 
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions";
@@ -18,8 +15,8 @@ const Nav = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" className="gap">
-        <Container>
+      <nav bg="dark" variant="dark" className="gap">
+        <div>
           <Link to="/home">
             <img
               alt=""
@@ -31,16 +28,16 @@ const Nav = () => {
           </Link>
 
           <SearchBar />
-        </Container>
-        <Button className="m-4" onClick={handleButton}>
+        </div>
+        <button className="m-4" onClick={handleButton}>
           Logout
-        </Button>
+        </button>
         <Link to="/watchlist">
-          <Button className="m-4">
+          <button className="m-4">
             Watchlist
-          </Button>
+          </button>
         </Link>
-      </Navbar>
+      </nav>
     </>
   );
 };

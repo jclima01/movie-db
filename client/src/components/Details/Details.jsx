@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToWatchlist, getMovie } from "../../redux/actions";
@@ -25,38 +24,37 @@ const Details = () => {
       icon: "success",
     });
   };
-console.log(movie)
   return (
     <div className="d-flex flex-column gap-5 m-5">
-      <Card>
-        <Card.Body className="d-flex gap-5">
-          <Image
+      <div>
+        <section className="d-flex gap-5">
+          <img
             width={300}
             src={`${IMAGE_PATH}/${movie.poster_path}`}
             alt={movie.title}
           />
 
-          <div className="gap-5">
-            <Card.Title>{movie.title}</Card.Title>
-            <Card.Text>{movie.overview}</Card.Text>
+          <section className="gap-5">
+            <h1>{movie.title}</h1>
+            <h1>{movie.overview}</h1>
 
-            <Card.Title>Fecha de estreno:</Card.Title>
-            <Card.Text>{movie.release_date}</Card.Text>
+            <h1>Fecha de estreno:</h1>
+            <h3>{movie.release_date}</h3>
 
-            <Card.Title>Géneros:</Card.Title>
+            <h1>Géneros:</h1>
             <div className="d-flex gap-2 mb-3">
               {movie.genres?.map((g) => (
                 <div key={g.id}>{g.name}</div>
               ))}
             </div>
             <div className="d-flex gap-2 mb-3">
-              <Button variant="primary" onClick={() => setModalShow(true)}>
+              <button variant="primary" onClick={() => setModalShow(true)}>
                 Ver Trailer
-              </Button>
+              </button>
 
-              <Button variant="primary" onClick={handleDispatch}>
+              <button variant="primary" onClick={handleDispatch}>
                 Add to Watchlist
-              </Button>
+              </button>
             </div>
 
             <ModalTrailer
@@ -64,9 +62,9 @@ console.log(movie)
               show={modalShow}
               onHide={() => setModalShow(false)}
             />
-          </div>
-        </Card.Body>
-      </Card>
+          </section>
+        </section>
+      </div>
       <AddReview />
       <Reviews />
     </div>

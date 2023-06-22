@@ -16,9 +16,12 @@ export const ADD_REVIEW = "ADD_REVIEW";
 export const ADD_TO_WATCHLIST = "ADD_TO_WATCHLIST";
 export const REMOVE_FROM_WATCHLIST = "REMOVE_FROM_WATCHLIST";
 export const GET_WATCHLIST = "GET_WATCHLIST";
+
 const API_URL = import.meta.env.API_URL;
 const API_KEY = import.meta.env.API_KEY;
 const DB_URL = import.meta.env.DB_URL;
+
+
 export const getWatchlist = () => {
   try {
     return async function (dispatch) {
