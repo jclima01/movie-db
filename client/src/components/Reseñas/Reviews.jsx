@@ -15,7 +15,7 @@ const Reviews = () => {
 
   return (
     <div
-      className="d-flex gap-4 border"
+      className="flex flex-col gap-4"
     >
       {reviews?.map((r) => (
         <Reseña key={r._id} comment={r.comment} createdAt={r.createdAt} />

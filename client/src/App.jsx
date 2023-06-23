@@ -24,7 +24,7 @@ function App() {
   }, [user]);
 
   return (
-    <>
+    <div>
       {(location.pathname !== "/register" &&
       location.pathname !== "/login") && <Nav />}
 
@@ -43,7 +43,7 @@ function App() {
         </Routes>
       )}
       {location.pathname !== "/" && <Footer />}
-    </>
+    </div>
   );
 }
 

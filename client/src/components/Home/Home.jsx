@@ -14,9 +14,9 @@ const Home = () => {
   }, [searchKey]);
 
   return (
-    <div className="w-screen flex flex-col items-center justify-center">
+    <div className="w-screen flex flex-col items-center justify-center bg-gray-500">
       <h1 className="text-4xl">Peliculas destacadas:</h1>
-      <div className="max-w-[1200px] grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 bg-white text-lg gap-16 mb-auto p-10 justify-center text-gray-800">
+      <div className="max-w-[1200px] grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-lg gap-16 mb-auto p-10 justify-center text-gray-800">
         {movies?.map((movie) => (
           <Link to={`/detail/${movie.id}`} key={movie.id}>
             <Card key={movie.id} movie={movie} />

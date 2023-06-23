@@ -13,17 +13,18 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className="w-[1000px] h-[65px] relative flex">
-        <AiOutlineSearch size="lg" />
+      <div className="w-[1000px] h-auto flex bg-transparent rounded-[30px] shadow justify-center px-[10px]">
+        <div className="flex justify-center items-center ">
+          <AiOutlineSearch size="50" className="self-center  text-slate-50" />
+        </div>
         <input
-          className="w-[889px] h-[65px] left-[0px] top-[0px] absolute bg-transparent rounded-[30px] shadow"
+          className="w-full h-[65px rounded-[30px] bg-transparent outline-none focus:ring-0"
           placeholder="Search movies"
           aria-label="Search"
           name="search"
           onChange={(e) => dispatch(setSearchKey(e.target.value))}
         />
       </div>
-
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
-import image from "/LogoPeliWhite.png";
+import image from "../../../assets/LogoPeliWhite.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -15,27 +15,23 @@ const Nav = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   return (
-    <>
-      <div className="w-screen h-7 flex justify-between items-center bg-slate-500 p-5">
-        <div>
-          <Link to="/home">
-            <img
-              alt="logo"
-              src={image}
-              className="h-16 w-auto d-inline-block align-center"
-            />
-          </Link>
-        </div>
+    
+      <div className="w-full h-auto p-3 flex justify-between items-center bg-gray-500">
+        <Link to="/home">
+          <img
+            alt="logo"
+            src={image}
+            className="px-4 w-[200px]  border shadow-lg rounded  "
+          />
+        </Link>
         <SearchBar />
-        <div className="flex gap-3 box-border">
-          <div className="btn-primary ">
-            <Link to="/watchlist" className="decoration-transparent">
-              Watchlist
-            </Link>
-          </div>
-          <div className="btn-primary">
-            <a onClick={handleButton}>Logout</a>
-          </div>
+        <div className="flex gap-x-3 box-border">
+          <Link to="/watchlist" className="">
+            <button className="btn-secondary cursor-pointer">Watchlist</button>
+          </Link>
+          <button onClick={handleButton} className="btn-secondary">
+            Logout
+          </button>
         </div>
 
         {/* Hamburger */}
@@ -102,7 +98,7 @@ const Nav = () => {
           </li>
         </ul>
       </div>
-    </>
+    
   );
 };
 
