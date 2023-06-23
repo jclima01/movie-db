@@ -25,11 +25,11 @@ const Details = () => {
     });
   };
   return (
-    <div className="d-flex flex-column gap-5 m-5">
+    <div className="flex flex-col gap-5 m-5">
       <div>
-        <section className="d-flex gap-5">
+        <section className="flex gap-5">
           <img
-            width={300}
+            className="w-72"
             src={`${IMAGE_PATH}/${movie.poster_path}`}
             alt={movie.title}
           />
@@ -42,17 +42,23 @@ const Details = () => {
             <h3>{movie.release_date}</h3>
 
             <h1>Géneros:</h1>
-            <div className="d-flex gap-2 mb-3">
+            <div className="flex gap-2 mb-3">
               {movie.genres?.map((g) => (
                 <div key={g.id}>{g.name}</div>
               ))}
             </div>
-            <div className="d-flex gap-2 mb-3">
-              <button variant="primary" onClick={() => setModalShow(true)}>
+            <div className="flex gap-2 mb-3">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+                onClick={() => setModalShow(true)}
+              >
                 Ver Trailer
               </button>
 
-              <button variant="primary" onClick={handleDispatch}>
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+                onClick={handleDispatch}
+              >
                 Add to Watchlist
               </button>
             </div>

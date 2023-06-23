@@ -14,6 +14,7 @@ import {
   GET_REVIEWS,
   ADD_TO_WATCHLIST,
   REMOVE_FROM_WATCHLIST,
+  GET_GENRES
 } from "../actions";
 
 const initialState = {
@@ -24,7 +25,8 @@ const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   loading: false,
   error: false,
-  reviews: []
+  reviews: [],
+  genres:[]
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -86,6 +88,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         movie: { ...payload.data },
         trailer: { ...payload.trailer },
+      };
+    case GET_GENRES:
+      return {
+        ...state,
+        genres: [...payload]
       };
 
     default:

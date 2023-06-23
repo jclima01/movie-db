@@ -16,12 +16,30 @@ export const ADD_REVIEW = "ADD_REVIEW";
 export const ADD_TO_WATCHLIST = "ADD_TO_WATCHLIST";
 export const REMOVE_FROM_WATCHLIST = "REMOVE_FROM_WATCHLIST";
 export const GET_WATCHLIST = "GET_WATCHLIST";
+export const GET_GENRES = "GET_GENRES";
 
-const API_URL = import.meta.env.API_URL;
-const API_KEY = import.meta.env.API_KEY;
-const DB_URL = import.meta.env.DB_URL;
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
+const DB_URL = import.meta.env.VITE_DB_URL;
+const DB_LOCAL= "http://localhost:5545"
 
-
+export const getGenres = () => {
+  try {
+    return async function (dispatch) {
+      const { data } = await axios.get(`${API_URL}/genre/movie/list?language=en`, {
+        params: {
+          api_key: API_KEY,
+        },
+      });
+      return dispatch({
+        type: GET_GENRES,
+        payload: data.genres,
+      });
+    };
+  } catch (err) {
+    console.log(err);
+  }
+};
 export const getWatchlist = () => {
   try {
     return async function (dispatch) {
@@ -44,7 +62,7 @@ export const removeFromWatchlist = (user, movie) => {
   try {
     return async function (dispatch) {
       const response = await axios.put(
-        `http://localhost:4000/api/user/${movie.id}`,
+        `${DB_LOCAL}/api/user/${movie.id}`,
         { boolean: false, movie: movie },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
@@ -61,7 +79,7 @@ export const addToWatchlist = (user, movie, boolean) => {
   try {
     return async function (dispatch) {
       const response = await axios.put(
-        `http://localhost:4000/api/user/${movie.id}`,
+        `${DB_LOCAL}/api/user/${movie.id}`,
         { boolean, movie },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
@@ -79,7 +97,7 @@ export const getReviews = (user, movieid) => {
   try {
     return async function (dispatch) {
       const response = await axios.get(
-        `http://localhost:4000/api/review/${movieid}`,
+        `${DB_LOCAL}/api/review/${movieid}`,
         { headers: { authorization: `Bearer ${user.token}` } }
       );
       return dispatch({
@@ -96,7 +114,7 @@ export const addReview = (user, comment, movieid) => {
   try {
     return async function (dispatch) {
       const response = await axios.post(
-        `http://localhost:4000/api/review/${movieid}`,
+        `${DB_LOCAL}/api/review/${movieid}`,
         { comment },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
@@ -114,7 +132,7 @@ export const register = (name, email, password) => {
   try {
     return async function (dispatch) {
       const response = await axios.post(
-        `http://localhost:4000/api/auth/register`,
+        `${DB_LOCAL}/api/auth/register`,
         { name, email, password }
       );
       return dispatch({
@@ -143,7 +161,7 @@ export const login = (email, password) => {
   try {
     return async function (dispatch) {
       const response = await axios.post(
-        `http://localhost:4000/api/auth/login`,
+        `${DB_LOCAL}/api/auth/login`,
         {
           email,
           password,
