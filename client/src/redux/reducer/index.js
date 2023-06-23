@@ -88,6 +88,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         movie: { ...payload.data },
         trailer: { ...payload.trailer },
+        directors: {... payload.directors}
       };
     case GET_GENRES:
       return {

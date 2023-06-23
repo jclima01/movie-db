@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import styles from "./Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../redux/actions";
 import Card from "../Card/Card";

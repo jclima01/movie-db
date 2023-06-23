@@ -24,7 +24,7 @@ const Card = ({ movie, onClick }) => {
     >
       <div className="w-[250px] h-[370px] ">
           <img
-            className="rounded-md "
+            className="rounded-md h-full w-full"
             src={`${URL_IMAGE}/${movie.poster_path}`}
           />      
       </div>

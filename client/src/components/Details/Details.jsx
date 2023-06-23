@@ -53,18 +53,35 @@ const Details = () => {
             <p className="text-base">{movie.overview}</p>
           </div>
 
-          <h1>Fecha de estreno:</h1>
-          <h3>{movie.release_date}</h3>
+          <h1>Fecha de estreno: <span>{movie.release_date}</span></h1>
 
           <h1>
-            Director: <span>{movie.director}</span>
+            Director:{" "}
+            <span>
+              {
+                movie?.credits?.crew?.find((member) => member.job === "Director")
+                  .name
+              }
+            </span>
           </h1>
-          <h1>Géneros:</h1>
-          <div className="flex gap-2 mb-3">
-            {movie.genres?.map((g) => (
-              <div key={g.id}>{g.name}</div>
-            ))}
-          </div>
+
+          <h1>
+            Genres:
+            <span className="flex gap-2 mb-3">
+              {movie.genres?.map((g) => (
+                <span key={g.id}>{g.name}</span>
+              ))}
+            </span>
+          </h1>
+          <h1 className="w-full">
+            Cast:
+            <span className="flex gap-2 mb-3 ">
+              {movie.credits.cast?.map((g) => (
+                <span key={g.id} className="overflow-hidden">{g.name}</span>
+              ))}
+            </span>
+          </h1>
+
           <div className="flex gap-2 mb-3">
             <button className="btn-primary" onClick={handleDispatch}>
               Add to Watchlist

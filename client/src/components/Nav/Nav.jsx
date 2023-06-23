@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
-import image from "../../../assets/LogoPeliWhite.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";

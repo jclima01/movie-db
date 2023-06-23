@@ -202,7 +202,7 @@ export const getMovies = (searchKey) => {
       const type = searchKey ? "search" : "discover";
       const {
         data: { results },
-      } = await axios.get(`${API_URL}/${type}/movie`, {
+      } = await axios.get(`${API_URL}/${type}/movie/?append_to_response=credits`, {
         params: {
           api_key: API_KEY,
           query: searchKey,
@@ -224,7 +224,7 @@ export const getMovie = (id) => {
       const { data } = await axios.get(`${API_URL}/movie/${id}`, {
         params: {
           api_key: API_KEY,
-          append_to_response: "videos",
+          append_to_response: "videos,credits,directors",
           language: "en-US",
         },
       });
@@ -233,11 +233,16 @@ export const getMovie = (id) => {
           vid.name.includes("Official Trailer")
         );
 
+        const director = data.credits && data.credits.crew
+          ? data.credits.crew.find((member) => member.job === "Director")
+          : null;
+
         return dispatch({
           type: GET_MOVIE,
           payload: {
             data: data,
             trailer: trailer ? trailer : data.videos.results[0],
+            directors: director ? director.name : ""
           },
         });
       }
