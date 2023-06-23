@@ -3,32 +3,32 @@
 @tailwind utilities;
 
 .btn-primary {
-  background-color: transparent;
-  color: #3a8aa5;
+  background-color: #6b7280;
+  color: #d6f5f9e6 ;
   font-weight: 600;
-  border: 1px solid #3a8aa5;
+  border: 1px solid #d6f5f9e6;
   border-radius: 0.25rem;
   transition: background-color 0.1s, color 0.1s, border-color 0.1s;
 }
 
 .btn-primary:hover {
   background-color: #3a8aa5;
-  color: #FFFFFF;
+  color: #d6f5f9e6;
   border-color: transparent;
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: #FFFFFF;
+  background-color: #6b7280;
+  color: #d6f5f9e6;
   font-weight: 600;
   padding: 0.5rem 1rem;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #d6f5f9e6;
   border-radius: 0.25rem;
   transition: background-color 0.1s, color 0.1s, border-color 0.1s;
 }
 
 .btn-secondary:hover {
-  background-color: #FFFFFF;
+  background-color: #d6f5f9e6;
   color: #6b7280;
-  border-color: transparent;
+  border-color: #6b7280;
 }

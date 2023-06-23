@@ -6,7 +6,7 @@ const Watchlist = () => {
   const user = useSelector((state) => state.user);
 const dispatch = useDispatch()
   return (
-    <div >
+    <div className="h-screen w-full bg-slate-100">
       <ul className="d-flex flex-column">
         {user.watchlist?.map((m) => (
           <div key={m.id} className="d-flex justify-content-between">

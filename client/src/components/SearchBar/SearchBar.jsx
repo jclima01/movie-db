@@ -13,12 +13,12 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className="w-[1000px] h-auto flex bg-transparent rounded-[30px] shadow justify-center px-[10px]">
-        <div className="flex justify-center items-center ">
-          <AiOutlineSearch size="50" className="self-center  text-slate-50" />
-        </div>
+      <div className="w-[500px] h-auto flex bg-transparent rounded-full shadow justify-center px-[10px] ">
+        {/* <div className="flex justify-center items-center bg-[#6b7280] rounded-l-full p-1 ">
+          <AiOutlineSearch size="40" className="self-center text-slate-100 " />
+        </div> */}
         <input
-          className="w-full h-[65px rounded-[30px] bg-transparent outline-none focus:ring-0"
+          className="w-full rounded-[30px] bg-transparent outline-none focus:ring-0 px-2 focus:text-white"
           placeholder="Search movies"
           aria-label="Search"
           name="search"

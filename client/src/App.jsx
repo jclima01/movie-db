@@ -24,7 +24,7 @@ function App() {
   }, [user]);
 
   return (
-    <div>
+    <div className="w-vw h-full">
       {(location.pathname !== "/register" &&
       location.pathname !== "/login") && <Nav />}
 

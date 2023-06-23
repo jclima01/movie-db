@@ -27,7 +27,7 @@ const Details = () => {
   };
   console.log(movie);
   return (
-    <div className="w-full gap-5  bg-gray-500 px-5 flex flex-col justify-center items-center">
+    <div className="w-full gap-5 px-5 flex flex-col justify-center items-center p-4 ">
       <div className="relative max-w-[1200px]">
         <img
           src={
@@ -42,20 +42,23 @@ const Details = () => {
           <button className="btn-primary" onClick={() => setModalShow(true)}>
             <GoPlay className="text-4xl" />
           </button>
-          <label className="text-[#ffffff]">Play trailer</label>
+          <label className="text-slate-100">Watch Trailer</label>
         </div>
       </div>
 
       <div className="flex w-vw max-w-[1200px] gap-5">
-        <div className="gap-5">
+        <div className="gap-5 h-full flex flex-col ">
           <div>
             <h1 className="text-3xl font-bold">{movie.title}</h1>
-            <p className="text-[#ffffff] text-base">{movie.overview}</p>
+            <p className="text-base">{movie.overview}</p>
           </div>
 
           <h1>Fecha de estreno:</h1>
           <h3>{movie.release_date}</h3>
 
+          <h1>
+            Director: <span>{movie.director}</span>
+          </h1>
           <h1>Géneros:</h1>
           <div className="flex gap-2 mb-3">
             {movie.genres?.map((g) => (

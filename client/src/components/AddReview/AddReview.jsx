@@ -25,7 +25,7 @@ const AddReview = () => {
 
   
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <h1>Deja tu reseña:</h1>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -34,6 +34,7 @@ const AddReview = () => {
           id="review"
           cols="30"
           rows="4"
+          className="border rounded-md"
           onChange={handleInputChange}
         ></textarea>
         <Button style={{ width: "auto" }} type="submit">Reseña</Button>
