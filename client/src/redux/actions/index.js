@@ -202,11 +202,12 @@ export const getMovies = (searchKey) => {
       const type = searchKey ? "search" : "discover";
       const {
         data: { results },
-      } = await axios.get(`${API_URL}/${type}/movie/?append_to_response=credits`, {
+      } = await axios.get(`${API_URL}/${type}/movie`, {
         params: {
           api_key: API_KEY,
           query: searchKey,
           language: "es-ES",
+          append_to_response: "credits",
         },
       });
       return dispatch({

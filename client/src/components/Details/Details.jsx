@@ -53,34 +53,39 @@ const Details = () => {
             <p className="text-base">{movie.overview}</p>
           </div>
 
-          <h1>Fecha de estreno: <span>{movie.release_date}</span></h1>
+          <h1>
+            Fecha de estreno: <span>{movie.release_date}</span>
+          </h1>
 
           <h1>
             Director:{" "}
             <span>
               {
-                movie?.credits?.crew?.find((member) => member.job === "Director")
-                  .name
+                movie?.credits?.crew?.find(
+                  (member) => member.job === "Director"
+                ).name
               }
             </span>
           </h1>
 
-          <h1>
+          <div className=" ">
             Genres:
             <span className="flex gap-2 mb-3">
-              {movie.genres?.map((g) => (
+              {movie?.genres?.map((g) => (
                 <span key={g.id}>{g.name}</span>
               ))}
             </span>
-          </h1>
-          <h1 className="w-full">
-            Cast:
+          </div>
+            <h1>Cast:</h1>
+          <div className="max-w-[400px] flex flex-wrap overflow-x-scroll">
             <span className="flex gap-2 mb-3 ">
-              {movie.credits.cast?.map((g) => (
-                <span key={g.id} className="overflow-hidden">{g.name}</span>
+              {movie?.credits?.cast?.map((g) => (
+                <span key={g.id} className="overflow-hidden">
+                  {g.name}
+                </span>
               ))}
             </span>
-          </h1>
+          </div>
 
           <div className="flex gap-2 mb-3">
             <button className="btn-primary" onClick={handleDispatch}>
@@ -95,7 +100,7 @@ const Details = () => {
           />
         </div>
         <img
-          className="w-72"
+          className="h-96"
           src={`${IMAGE_PATH}/${movie.poster_path}`}
           alt={movie.title}
         />
