@@ -1,20 +1,20 @@
-const express = require('express')
-require('dotenv').config()
-const connectDB = require('./config/db')
-const cors = require('cors')
+const express = require("express");
+require("dotenv").config();
+const connectDB = require("./config/db");
+const cors = require("cors");
 
-//Imports Routes
-const AuthRouter = require('./routes/AuthRoute')
-const ReviewRouter = require('./routes/ReviewRoute')
-const UserRouter = require('./routes/UserRoute')
+// Importar rutas
+const AuthRouter = require("./routes/AuthRoute");
+const ReviewRouter = require("./routes/ReviewRoute");
+const UserRouter = require("./routes/UserRoute");
 
-//App Server
-const app = express()
+// Servidor de aplicaciones
+const app = express();
 
 //Middleware
-app.use(express.json())
-app.use(cors())
-//Routes
+app.use(express.json());
+app.use(cors({ origin: "*" }));
+// Rutas
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
@@ -28,16 +28,14 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/api/auth", AuthRouter);
+app.use("/api/review", ReviewRouter);
+app.use("/api/user", UserRouter);
 
-app.use('/api/auth', AuthRouter )
-app.use('/api/review', ReviewRouter )
-app.use('/api/user', UserRouter )
-
-
-//Express  PORT and listening
-const PORT = process.env.PORT_KEY || 4006
+// Puerto de Express y escucha
+const PORT = process.env.PORT_KEY || 4006;
 
 app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`)
-    connectDB()
-})
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
+  connectDB();
+});
