@@ -21,7 +21,6 @@ export const GET_GENRES = "GET_GENRES";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 const DB_URL = import.meta.env.VITE_DB_URL;
-const DB_LOCAL= "http://localhost:5545"
 
 export const getGenres = () => {
   try {
@@ -62,7 +61,7 @@ export const removeFromWatchlist = (user, movie) => {
   try {
     return async function (dispatch) {
       const response = await axios.put(
-        `${DB_LOCAL}/api/user/${movie.id}`,
+        `${DB_URL}/api/user/${movie.id}`,
         { boolean: false, movie: movie },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
@@ -79,7 +78,7 @@ export const addToWatchlist = (user, movie, boolean) => {
   try {
     return async function (dispatch) {
       const response = await axios.put(
-        `${DB_LOCAL}/api/user/${movie.id}`,
+        `${DB_URL}/api/user/${movie.id}`,
         { boolean, movie },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
@@ -97,7 +96,7 @@ export const getReviews = (user, movieid) => {
   try {
     return async function (dispatch) {
       const response = await axios.get(
-        `${DB_LOCAL}/api/review/${movieid}`,
+        `${DB_URL}/api/review/${movieid}`,
         { headers: { authorization: `Bearer ${user.token}` } }
       );
       return dispatch({
@@ -114,7 +113,7 @@ export const addReview = (user, comment, movieid) => {
   try {
     return async function (dispatch) {
       const response = await axios.post(
-        `${DB_LOCAL}/api/review/${movieid}`,
+        `${DB_URL}/api/review/${movieid}`,
         { comment },
         { headers: { authorization: `Bearer ${user.token}` } }
       );
@@ -132,7 +131,7 @@ export const register = (name, email, password) => {
   try {
     return async function (dispatch) {
       const response = await axios.post(
-        `${DB_LOCAL}/api/auth/register`,
+        `${DB_URL}/api/auth/register`,
         { name, email, password }
       );
       return dispatch({
@@ -161,7 +160,7 @@ export const login = (email, password) => {
   try {
     return async function (dispatch) {
       const response = await axios.post(
-        `${DB_LOCAL}/api/auth/login`,
+        `${DB_URL}/api/auth/login`,
         {
           email,
           password,
