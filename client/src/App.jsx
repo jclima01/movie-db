@@ -14,6 +14,7 @@ import Login from "./components/Login/Login";
 import Nav from "./components/Nav/Nav";
 import Register from "./components/Registrer/Register";
 import Watchlist from "./components/Watchlist/Watchlist";
+import "./index.css"
 function App() {
   const location = useLocation();
   const navigate = useNavigate();

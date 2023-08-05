@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addReview } from "../../redux/actions";
@@ -37,7 +36,7 @@ const AddReview = () => {
           className="border rounded-md"
           onChange={handleInputChange}
         ></textarea>
-        <Button style={{ width: "auto" }} type="submit">Reseña</Button>
+        <button style={{ width: "auto" }} type="submit">Reseña</button>
       </form>
     </div>
   );

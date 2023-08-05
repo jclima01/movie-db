@@ -11,7 +11,6 @@ const ModalTrailer = (props) => {
       {...props}
       size="xl"
       aria-labelledby="contained-modal-title-vcenter"
-     
       centered
     >
       <Modal.Body>

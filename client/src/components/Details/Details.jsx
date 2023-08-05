@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToWatchlist, getMovie } from "../../redux/actions";
-import AddReview from "../AddReview/AddReview";
-import ModalTrailer from "../ModalTrailer/ModalTrailer";
-import Reviews from "../Reseñas/Reviews";
 import Swal from "sweetalert2";
 import { GoPlay } from "react-icons/go";
+import ModalTrailer from "../ModalTrailer/ModalTrailer"
+import AddReview from "../AddReview/AddReview";
+import Reviews from "../Reseñas/Reviews"
 const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
 const Details = () => {
   const user = useSelector((state) => state.user);
