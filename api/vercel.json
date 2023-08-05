@@ -1,9 +1,14 @@
 {
-    "projectRoot": ".",
-    "build": {
-      "target": "serverless"
-    },
-    "functions": {
-      "api": ["./index.js"]
+  "builds": [
+    {
+      "src": "./index.js",
+      "use": "@vercel/node"
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
+}
