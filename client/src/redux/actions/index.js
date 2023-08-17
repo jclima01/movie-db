@@ -25,11 +25,14 @@ const DB_URL = import.meta.env.VITE_DB_URL;
 export const getGenres = () => {
   try {
     return async function (dispatch) {
-      const { data } = await axios.get(`${API_URL}/genre/movie/list?language=en`, {
-        params: {
-          api_key: API_KEY,
-        },
-      });
+      const { data } = await axios.get(
+        `${API_URL}/genre/movie/list?language=en`,
+        {
+          params: {
+            api_key: API_KEY,
+          },
+        }
+      );
       return dispatch({
         type: GET_GENRES,
         payload: data.genres,
@@ -95,10 +98,9 @@ export const addToWatchlist = (user, movie, boolean) => {
 export const getReviews = (user, movieid) => {
   try {
     return async function (dispatch) {
-      const response = await axios.get(
-        `${DB_URL}/api/review/${movieid}`,
-        { headers: { authorization: `Bearer ${user.token}` } }
-      );
+      const response = await axios.get(`${DB_URL}/api/review/${movieid}`, {
+        headers: { authorization: `Bearer ${user.token}` },
+      });
       return dispatch({
         type: GET_REVIEWS,
         payload: response.data,
@@ -130,10 +132,11 @@ export const addReview = (user, comment, movieid) => {
 export const register = (name, email, password) => {
   try {
     return async function (dispatch) {
-      const response = await axios.post(
-        `${DB_URL}/api/auth/register`,
-        { name, email, password }
-      );
+      const response = await axios.post(`${DB_URL}/api/auth/register`, {
+        name,
+        email,
+        password,
+      });
       return dispatch({
         type: REGISTER,
         payload: response.data,
@@ -159,13 +162,10 @@ export const logout = () => {
 export const login = (email, password) => {
   try {
     return async function (dispatch) {
-      const response = await axios.post(
-        `${DB_URL}/api/auth/login`,
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${DB_URL}/api/auth/login`, {
+        email,
+        password,
+      });
       if (response.data) {
         return dispatch({
           type: LOGIN_SUCCESS,
@@ -233,16 +233,17 @@ export const getMovie = (id) => {
           vid.name.includes("Official Trailer")
         );
 
-        const director = data.credits && data.credits.crew
-          ? data.credits.crew.find((member) => member.job === "Director")
-          : null;
+        const director =
+          data.credits && data.credits.crew
+            ? data.credits.crew.find((member) => member.job === "Director")
+            : null;
 
         return dispatch({
           type: GET_MOVIE,
           payload: {
             data: data,
             trailer: trailer ? trailer : data.videos.results[0],
-            directors: director ? director.name : ""
+            directors: director ? director.name : "",
           },
         });
       }

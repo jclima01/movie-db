@@ -5,8 +5,8 @@ import { addReview } from "../../redux/actions";
 
 const AddReview = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user)
-  const {movieid} = useParams()
+  const user = useSelector((state) => state.user);
+  const { movieid } = useParams();
   const [comment, setComment] = useState({
     review: "",
   });
@@ -19,24 +19,28 @@ const AddReview = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addReview(user,comment.review,movieid));
+    dispatch(addReview(user, comment.review, movieid));
   };
 
-  
   return (
     <div className="flex flex-col gap-2">
-      <h1>Deja tu reseña:</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>Publish your review</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-y-2 items-start justify-start"
+      >
         <textarea
           style={{ width: "80%" }}
           name="review"
           id="review"
           cols="30"
-          rows="4"
+          rows="2"
           className="border rounded-md"
           onChange={handleInputChange}
         ></textarea>
-        <button style={{ width: "auto" }} type="submit">Reseña</button>
+        <button className="btn-primary" type="submit">
+          Add review
+        </button>
       </form>
     </div>
   );

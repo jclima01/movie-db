@@ -8,7 +8,6 @@ const URL_IMAGE = "https://image.tmdb.org/t/p/original";
 const Card = ({ movie, onClick }) => {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
-  console.log(movie);
   useEffect(() => {
     dispatch(getGenres());
   }, [dispatch]);
@@ -18,20 +17,20 @@ const Card = ({ movie, onClick }) => {
     .map((genre) => genre.name);
   return (
     <div
-      className="w-[250px] h-[450px] p-[0px] flex-col justify-start items-start gap-[12px] inline-flex"
+      className="w-[250px] h-full p-[0px] flex-col justify-between items-start gap-[4px] inline-flex"
       key={movie.id}
       onClick={onClick}
     >
       <div className="w-[250px] h-[370px] ">
-          <img
-            className="rounded-md h-full w-full"
-            src={`${URL_IMAGE}/${movie.poster_path}`}
-          />      
+        <img
+          className="rounded-md h-full w-full"
+          src={`${URL_IMAGE}/${movie.poster_path}`}
+        />
       </div>
       <div className="text-gray-400 text-sm  mt-4 font-bold">
         {movie.release_date}
       </div>
-      <h3 className="w-[250px] text-gray-900 text-[18px] font-bold">
+      <h3 className="w-[250px] h-auto text-gray-900 text-[18px] font-bold overflow-hidden">
         {movie.title}
       </h3>
       <div className="w-[250px] p-[0px] justify-between items-start gap-8 inline-flex">
@@ -49,8 +48,8 @@ const Card = ({ movie, onClick }) => {
         </div>
       </div>
       <div className="text-gray-400 text-[12px] font-bold flex w-full overflow-hidden gap-3">
-        {movieGenres.map((genre) => (
-          <div>{genre}</div>
+        {movieGenres.map((genre, ix) => (
+          <div key={ix}>{genre}</div>
         ))}
       </div>
     </div>

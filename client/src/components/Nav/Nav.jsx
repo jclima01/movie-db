@@ -1,41 +1,58 @@
 import React, { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions";
+import logo from "../../../assets/logo.svg";
 const Nav = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
 
-  const handleButton = (e) => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate("/login");
+  };
+  const handleLoout = (e) => {
     e.preventDefault();
     dispatch(logout());
   };
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   return (
-    <div className="w-full h-auto px-4 py-2  flex justify-between items-center gap-x-4 box-border bg-slate-800 border-slate-100" >
-      <div className=" btn-secondary ">
-        <Link to="/home">moviedb</Link>
-      </div>
+    <div className="w-full h-auto px-4 py-2  flex justify-between items-center gap-x-4 box-border bg-slate-800 border-slate-100">
+      <Link to="/">
+        <img src={logo} alt="" className="w-48 h-auto" />
+      </Link>
 
       <SearchBar />
       <div className="flex justify-evenly gap-x-3 ">
-        <Link to="/watchlist" className="w-auto">
-          <button className="btn-secondary cursor-pointer">Watchlist</button>
-        </Link>
-        <button onClick={handleButton} className="btn-secondary w-auto">
-          Logout
-        </button>
+        {user ? (
+          <>
+            <Link to="/watchlist" className="w-auto">
+              <button className="btn-secondary cursor-pointer">
+                Watchlist
+              </button>
+            </Link>
+            <button onClick={handleLoout} className="btn-secondary w-auto">
+              Logout
+            </button>
+          </>
+        ) : (
+          <button onClick={handleLogin} className="btn-secondary w-auto">
+            Login
+          </button>
+        )}
       </div>
 
       {/* Hamburger */}
-      <div onClick={handleClick} className="md:hidden z-10 p-4">
+      {/* <div onClick={handleClick} className="md:hidden z-10 p-4">
         {!nav ? <FaBars /> : <FaTimes />}
-      </div>
+      </div> */}
 
       {/* Mobile menu */}
-      <ul
+      {/* <ul
         className={
           !nav
             ? "hidden"
@@ -43,55 +60,31 @@ const Nav = () => {
         }
       >
         <li className="py-6 text-4xl">
-          <Link
-            onClick={handleClick}
-            to="home"
-            smooth={true}
-            duration={500}
-            offset={-80}
-          >
+          <Link onClick={handleClick} to="home" duration={500} offset={-80}>
             Home
           </Link>
         </li>
         <li className="py-6 text-4xl">
-          <Link onClick={handleClick} to="about" smooth={true} duration={500}>
+          <Link onClick={handleClick} to="about" duration={500}>
             About
           </Link>
         </li>
         <li className="py-6 text-4xl">
-          <Link
-            onClick={handleClick}
-            to="skills"
-            smooth={true}
-            duration={500}
-            offset={-80}
-          >
+          <Link onClick={handleClick} to="skills" duration={500} offset={-80}>
             Skills
           </Link>
         </li>
         <li className="py-6 text-4xl">
-          <Link
-            onClick={handleClick}
-            to="work"
-            smooth={true}
-            duration={500}
-            offset={-80}
-          >
+          <Link onClick={handleClick} to="work" duration={500} offset={-80}>
             Work
           </Link>
         </li>
         <li className="py-6 text-4xl">
-          <Link
-            onClick={handleClick}
-            to="contact"
-            smooth={true}
-            duration={500}
-            offset={-80}
-          >
+          <Link onClick={handleClick} to="contact" duration={500} offset={-80}>
             Contact
           </Link>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 };

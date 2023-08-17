@@ -6,6 +6,7 @@
   background-color: #6b7280;
   color: #d6f5f9e6 ;
   font-weight: 600;
+  padding: 10px;
   border: 1px solid #d6f5f9e6;
   border-radius: 0.25rem;
   transition: background-color 0.1s, color 0.1s, border-color 0.1s;
@@ -19,6 +20,7 @@
 
 .btn-secondary {
   background-color: #6b7280;
+  padding: 10px;
   color: #d6f5f9e6;
   font-weight: 600;
   padding: 0.5rem 1rem;

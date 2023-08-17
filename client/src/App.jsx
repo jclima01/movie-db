@@ -14,36 +14,35 @@ import Login from "./components/Login/Login";
 import Nav from "./components/Nav/Nav";
 import Register from "./components/Registrer/Register";
 import Watchlist from "./components/Watchlist/Watchlist";
-import "./index.css"
+import "./index.css";
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (!user) navigate("/");
-  }, [user]);
+
 
   return (
     <div className="w-vw h-full">
-      {(location.pathname !== "/register" &&
-      location.pathname !== "/login") && <Nav />}
+      {location.pathname !== "/register" && location.pathname !== "/login" && (
+        <Nav />
+      )}
 
       {user ? (
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/detail/:movieid" element={<Details />} />
           <Route path="/watchlist" element={<Watchlist />} />
-          <Route path="*" element={<Navigate to="/home" />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/detail/:movieid" element={<Details />} />
         </Routes>
       ) : (
         <Routes>
+          <Route path="/detail/:movieid" element={<Details />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />} />
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       )}
-      {location.pathname !== "/" && <Footer />}
+      {location.pathname !== "/login" && location.pathname !== "/login" && <Footer />}
     </div>
   );
 }
