@@ -7,14 +7,13 @@ exports.register = async (name, email, password) => {
   if (!name || !email || !password) throw new Error("User not registered");
   const user = await User.findOne({ email });
   if (user) throw new Error("user already registered");
-  
+
   var salt = bcrypt.genSaltSync(10);
   var hash = bcrypt.hashSync(password, salt);
 
   const newUser = new User({ name, email, password: hash });
 
   const saveUser = await newUser.save();
-console.log(saveUser);
   return saveUser;
 };
 
@@ -31,6 +30,6 @@ exports.login = async (email, password) => {
   const token = jwt.sign({ id: user._id }, process.env.KEY_JWT, {
     expiresIn: "1h",
   });
-console.log(token)
+  console.log(token);
   return { token, ...user._doc };
 };
